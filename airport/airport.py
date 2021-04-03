@@ -1,37 +1,47 @@
 class solution:
     def solve(self):
-        i = input()
-        aircount = int(i[0])
-        flightCount = int(i[1])
-        flights = []
-        airport = []
-        for i in range(flightCount):
-            flights.append(input())
-            print(flights)
-
-        connected = [0]*flightCount
+        aircount = 3
+        flightCount = 3
+        airport = [i for i in range(1,aircount+1)]
+        flights = ["12","23","13"]
+        visited = [False]*aircount
+        # for i in range(flightCount):
+        #     flights.append(input())
+        #     print(flights)
+        connected = [0]*aircount
         for i in flights:
-            connected[i[0]]+=1
-            connected[i[1]]+=1
-            if connected[i[0]]>aircount or connected[i[1]]>aircount:
+            connected[int(i[0])-1]+=1
+            connected[int(i[1])-1]+=1
+            if connected[int(i[0])-1]>aircount or connected[int(i[1])-1]>aircount:
                 return False
         
         for each in connected:
-            if connected!=aircount:
+            if each!=aircount-1:
                 return False
         
         def dfs(flights,at,visited):
-            visited[at] == True
             for edge in flights:
-                if at in edge:
-                    i = 0 if edge[1] == at else 1
-                    if visited[edge[i]]:
-                        dfs(flights,edge[i],visited)
+                if str(at) == edge[0] and not visited[int(edge[1])-1]:
+                    visited[int(edge[1])-1] = True
+                    dfs(flights,edge[1],visited)
 
+        rev = []
+        for each in flights:
+            temp = [each[1]+each[0]]
+            rev.append(temp)
 
+        for each in airport:
+            dfs(flights,each,visited)
+        for each in airport:
+            if not visited[each-1]:
+                return False
+        # visited = [False]*aircount
+        # for each in airport:
+        #     dfs(rev,each,visited)
+        # for each in airport:
+        #     if not visited[each-1]:
+        #         return False
+        return True
 
-
-
-    
 s = solution()
-s.solve()
+print("Yes" if s.solve() else "No")
