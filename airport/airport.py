@@ -5,9 +5,6 @@ class solution:
         airport = [i for i in range(1,aircount+1)]
         flights = ["12","23","13"]
         visited = [False]*aircount
-        # for i in range(flightCount):
-        #     flights.append(input())
-        #     print(flights)
         connected = [0]*aircount
         for i in flights:
             connected[int(i[0])-1]+=1
