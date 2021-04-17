@@ -2,7 +2,7 @@ import java.util.*;
 class main {
     public static void main(String [] args){
         Solution solution = new Solution();
-        solution.solution();
+        solution.solution(null);
         System.out.println("Hi");
     }
 }
